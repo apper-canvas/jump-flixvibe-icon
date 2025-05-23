@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import { Search, Play, Plus, ThumbsUp, ChevronDown, Star, Filter, Calendar, Sun, Moon } from 'lucide-react'
@@ -7,6 +8,7 @@ import MainFeature from '../components/MainFeature'
 import ApperIcon from '../components/ApperIcon'
 
 function Home({ darkMode, setDarkMode }) {
+  const navigate = useNavigate()
   const navigate = useNavigate()
   const notificationRef = useRef(null)
   const [featuredContent, setFeaturedContent] = useState({
@@ -132,6 +134,10 @@ function Home({ darkMode, setDarkMode }) {
     })
   }
 
+  const handleProfileClick = () => {
+    navigate('/profile')
+  }
+
   const markAllAsRead = () => {
     setNotifications(prev => {
       const updated = prev.map(notification => ({ ...notification, read: true }))
@@ -199,13 +205,18 @@ function Home({ darkMode, setDarkMode }) {
             >
               <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-r from-primary to-primary-light rounded-lg flex items-center justify-center">
                 <ApperIcon name="Play" className="w-4 h-4 md:w-5 md:h-5 text-white" />
-              </div>
+            <motion.button
               <span className="text-xl md:text-2xl font-bold text-white">FlixVibe</span>
             </motion.div>
-
+              onClick={handleProfileClick}
+              className="w-10 h-10 bg-gradient-to-br from-primary to-primary-light rounded-full flex items-center justify-center shadow-lg hover:shadow-glow transition-all duration-300 border-none cursor-pointer"
+              aria-label="Go to Profile"
+              title="Profile"
+              type="button"
+              role="button"
             {/* Navigation Links - Hidden on mobile */}
             <div className="hidden md:flex items-center space-x-8">
-              {["Home", "Movies", "TV Shows", "My List"].map((item) => (
+            </motion.button>
                 <motion.a
                   key={item}
                   whileHover={{ scale: 1.05 }}
