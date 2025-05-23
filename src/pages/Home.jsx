@@ -2,13 +2,11 @@ import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
 import { Search, Play, Plus, ThumbsUp, ChevronDown, Star, Filter, Calendar, Sun, Moon } from 'lucide-react'
 import MainFeature from '../components/MainFeature'
 import ApperIcon from '../components/ApperIcon'
 
 function Home({ darkMode, setDarkMode }) {
-  const navigate = useNavigate()
   const navigate = useNavigate()
   const notificationRef = useRef(null)
   const [featuredContent, setFeaturedContent] = useState({
@@ -205,18 +203,26 @@ function Home({ darkMode, setDarkMode }) {
             >
               <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-r from-primary to-primary-light rounded-lg flex items-center justify-center">
                 <ApperIcon name="Play" className="w-4 h-4 md:w-5 md:h-5 text-white" />
-            <motion.button
+              </div>
               <span className="text-xl md:text-2xl font-bold text-white">FlixVibe</span>
             </motion.div>
-              onClick={handleProfileClick}
-              className="w-10 h-10 bg-gradient-to-br from-primary to-primary-light rounded-full flex items-center justify-center shadow-lg hover:shadow-glow transition-all duration-300 border-none cursor-pointer"
-              aria-label="Go to Profile"
-              title="Profile"
+
+            {/* Navigation Links - Hidden on mobile */}
+            <div className="hidden md:flex items-center space-x-8">
               type="button"
               role="button"
             {/* Navigation Links - Hidden on mobile */}
             <div className="hidden md:flex items-center space-x-8">
             </motion.button>
+                <motion.a
+                  key={item}
+                  whileHover={{ scale: 1.05 }}
+                  href="#"
+                  className="text-gray-300 hover:text-white transition-colors duration-200 font-medium"
+                >
+                  {item}
+                </motion.a>
+              {['Home', 'Movies', 'TV Shows', 'My List'].map((item) => (
                 <motion.a
                   key={item}
                   whileHover={{ scale: 1.05 }}
@@ -273,10 +279,10 @@ function Home({ darkMode, setDarkMode }) {
                   <div ref={notificationRef}>
                     <motion.div
                       initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                    className="absolute top-full right-0 mt-2 w-96 bg-surface-800 dark:bg-surface-900 border border-gray-600 rounded-xl shadow-2xl z-50 max-h-96 overflow-hidden"
-                  >
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                      className="absolute top-full right-0 mt-2 w-96 bg-surface-800 dark:bg-surface-900 border border-gray-600 rounded-xl shadow-2xl z-50 max-h-96 overflow-hidden"
+                    >
                     {/* Header */}
                     <div className="p-4 border-b border-gray-600 flex items-center justify-between">
                       <h3 className="text-white font-semibold text-lg">Notifications</h3>
@@ -383,9 +389,15 @@ function Home({ darkMode, setDarkMode }) {
                 )}
               </motion.button>
 
-              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-r from-primary to-primary-light flex items-center justify-center">
+              <motion.button
+                onClick={handleProfileClick}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-r from-primary to-primary-light flex items-center justify-center transition-all duration-300 cursor-pointer border-none"
+                aria-label="Go to Profile"
+              >
                 <ApperIcon name="User" className="w-4 h-4 md:w-5 md:h-5 text-white" />
-              </div>
+              </motion.button>
             </div>
           </div>
         </div>
