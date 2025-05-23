@@ -207,7 +207,19 @@ function Home({ darkMode, setDarkMode }) {
   const handlePressClick = () => {
     navigate('/press')
     toast.info('Navigating to Press', {
-    navigate('/cookie-policy');
+      position: "top-right",
+      autoClose: 2000
+    })
+  }
+
+  const handleCookiePolicyClick = () => {
+    navigate('/cookie-policy')
+    toast.info('Navigating to Cookie Policy', {
+      position: "top-right",
+      autoClose: 2000
+    })
+  }
+
   const handleHelpCenterClick = () => {
     navigate('/help-center')
     toast.info('Navigating to Help Center', {
@@ -585,7 +597,7 @@ function Home({ darkMode, setDarkMode }) {
                 {column.map((item) => (
                   <button
                     key={item}
-                    onClick={item === 'About' ? handleAboutClick : item === 'Careers' ? handleCareersClick : item === 'Press' ? handlePressClick : item === 'Help Center' ? handleHelpCenterClick : item === 'Contact Us' ? handleContactUsClick : item === 'Terms' ? handleTermsClick : item === 'Privacy' ? handlePrivacyClick : () => {
+                    onClick={item === 'About' ? handleAboutClick : item === 'Careers' ? handleCareersClick : item === 'Press' ? handlePressClick : item === 'Help Center' ? handleHelpCenterClick : item === 'Contact Us' ? handleContactUsClick : item === 'Terms' ? handleTermsClick : item === 'Privacy' ? handlePrivacyClick : item === 'Cookie Policy' ? handleCookiePolicyClick : () => {
                       toast.info(`Opening ${item}`, { position: "top-right", autoClose: 2000 })
                     }}
                     type="button"
