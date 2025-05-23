@@ -197,6 +197,14 @@ function Home({ darkMode, setDarkMode }) {
     })
   }
 
+  const handlePressClick = () => {
+    navigate('/press')
+    toast.info('Navigating to Press', {
+      position: "top-right",
+      autoClose: 2000
+    })
+  }
+
   const formatTimestamp = (timestamp) => {
     const now = new Date()
     const diff = now - timestamp
@@ -550,7 +558,7 @@ function Home({ darkMode, setDarkMode }) {
                 {column.map((item) => (
                   <button
                     key={item}
-                    onClick={item === 'About' ? handleAboutClick : item === 'Careers' ? handleCareersClick : () => {
+                    onClick={item === 'About' ? handleAboutClick : item === 'Careers' ? handleCareersClick : item === 'Press' ? handlePressClick : () => {
                       toast.info(`Opening ${item}`, { position: "top-right", autoClose: 2000 })
                     }}
                     type="button"
