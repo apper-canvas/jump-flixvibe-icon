@@ -241,7 +241,6 @@ function Home({ darkMode, setDarkMode }) {
               </motion.button>
 
               <motion.button
-                ref={notificationRef}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={toggleNotifications}
@@ -260,7 +259,8 @@ function Home({ darkMode, setDarkMode }) {
                 
                 {/* Notifications Dropdown */}
                 {showNotifications && (
-                  <motion.div
+                  <div ref={notificationRef}>
+                    <motion.div
                     initial={{ opacity: 0, y: -10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -285,12 +285,12 @@ function Home({ darkMode, setDarkMode }) {
                     <div className="max-h-80 overflow-y-auto scrollbar-hide">
                       {notifications.length > 0 ? (
                         notifications.map((notification, index) => (
-                          <motion.div
+                          <motion.button
                             key={notification.id}
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: index * 0.1 }}
-                            className={`p-4 border-b border-gray-700 last:border-b-0 hover:bg-surface-700 transition-colors cursor-pointer ${
+                            className={`w-full text-left p-4 border-b border-gray-700 last:border-b-0 hover:bg-surface-700 transition-colors ${
                               !notification.read ? 'bg-primary/5' : ''
                             }`}
                             onClick={() => !notification.read && markAsRead(notification.id)}
@@ -346,7 +346,7 @@ function Home({ darkMode, setDarkMode }) {
                                 </div>
                               </div>
                             </div>
-                          </motion.div>
+                          </motion.button>
                         ))
                       ) : (
                         <div className="p-8 text-center">
@@ -362,7 +362,8 @@ function Home({ darkMode, setDarkMode }) {
                         View all notifications
                       </button>
                     </div>
-                  </motion.div>
+                    </motion.div>
+                  </div>
                 )}
               </motion.button>
 
