@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
@@ -8,6 +8,7 @@ import ApperIcon from '../components/ApperIcon'
 
 function Home({ darkMode, setDarkMode }) {
   const navigate = useNavigate()
+  const notificationRef = useRef(null)
   const [featuredContent, setFeaturedContent] = useState({
     title: "Stranger Things",
     description: "When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces, and one strange little girl.",
@@ -27,6 +28,64 @@ function Home({ darkMode, setDarkMode }) {
     "Drama"
   ])
 
+  const [showNotifications, setShowNotifications] = useState(false)
+  const [notifications, setNotifications] = useState([
+    {
+      id: 1,
+      type: 'new_release',
+      title: 'New Episode Available',
+      message: 'Stranger Things Season 5 Episode 3 is now available',
+      timestamp: new Date(Date.now() - 30 * 60000), // 30 minutes ago
+      read: false,
+      category: 'New Release'
+    },
+    {
+      id: 2,
+      type: 'recommendation',
+      title: 'Recommended for You',
+      message: 'Based on your viewing history, you might like "Dark Matter"',
+      timestamp: new Date(Date.now() - 2 * 60 * 60000), // 2 hours ago
+      read: false,
+      category: 'Recommendation'
+    },
+    {
+      id: 3,
+      type: 'watchlist',
+      title: 'Watchlist Update',
+      message: 'The movie "Cosmic Horizons" from your watchlist is now trending',
+      timestamp: new Date(Date.now() - 4 * 60 * 60000), // 4 hours ago
+      read: false,
+      category: 'Watchlist'
+    },
+    {
+      id: 4,
+      type: 'new_release',
+      title: 'New Series Added',
+      message: 'The highly anticipated series "Quantum Dreams" has been added',
+      timestamp: new Date(Date.now() - 8 * 60 * 60000), // 8 hours ago
+      read: true,
+      category: 'New Release'
+    },
+    {
+      id: 5,
+      type: 'update',
+      title: 'Quality Upgrade',
+      message: 'Your favorite movie "Neon Nights" is now available in 4K',
+      timestamp: new Date(Date.now() - 24 * 60 * 60000), // 1 day ago
+      read: true,
+      category: 'Update'
+    }
+  ])
+
+  const unreadCount = notifications.filter(n => !n.read).length
+
+  useEffect(() => {
+    const savedNotifications = localStorage.getItem('flixvibe-notifications')
+    if (savedNotifications) {
+      setNotifications(JSON.parse(savedNotifications))
+    }
+  }, [])
+
   const toggleDarkMode = () => {
     setDarkMode(!darkMode)
     toast.success(
@@ -44,6 +103,83 @@ function Home({ darkMode, setDarkMode }) {
       position: "top-right",
       autoClose: 2000
     })
+  }
+
+  const toggleNotifications = () => {
+    setShowNotifications(!showNotifications)
+    if (!showNotifications) {
+      toast.info('Opening notifications', {
+        position: "top-right",
+        autoClose: 1500
+      })
+    }
+  }
+
+  const markAsRead = (notificationId) => {
+    setNotifications(prev => {
+      const updated = prev.map(notification =>
+        notification.id === notificationId
+          ? { ...notification, read: true }
+          : notification
+      )
+      localStorage.setItem('flixvibe-notifications', JSON.stringify(updated))
+      return updated
+    })
+    
+    toast.success('Notification marked as read', {
+      position: "top-right",
+      autoClose: 2000
+    })
+  }
+
+  const markAllAsRead = () => {
+    setNotifications(prev => {
+      const updated = prev.map(notification => ({ ...notification, read: true }))
+      localStorage.setItem('flixvibe-notifications', JSON.stringify(updated))
+      return updated
+    })
+    
+    toast.success('All notifications marked as read', {
+      position: "top-right",
+      autoClose: 2000
+    })
+  }
+
+  const formatTimestamp = (timestamp) => {
+    const now = new Date()
+    const diff = now - timestamp
+    const minutes = Math.floor(diff / 60000)
+    const hours = Math.floor(diff / 3600000)
+    const days = Math.floor(diff / 86400000)
+
+    if (minutes < 60) {
+      return `${minutes} minutes ago`
+    } else if (hours < 24) {
+      return `${hours} hours ago`
+    } else {
+      return `${days} days ago`
+    }
+  }
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (notificationRef.current && !notificationRef.current.contains(event.target)) {
+        setShowNotifications(false)
+      }
+    }
+
+    if (showNotifications) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [showNotifications])
+
+  const getNotificationIcon = (type) => {
+    const icons = { new_release: 'Sparkles', recommendation: 'Heart', watchlist: 'Bookmark', update: 'RefreshCw' }
+    return icons[type] || 'Bell'
   }
 
   return (
@@ -105,11 +241,129 @@ function Home({ darkMode, setDarkMode }) {
               </motion.button>
 
               <motion.button
+                ref={notificationRef}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="p-2 rounded-full bg-surface-800 hover:bg-surface-700 transition-colors"
+                onClick={toggleNotifications}
+                className="relative p-2 rounded-full bg-surface-800 hover:bg-surface-700 transition-colors"
               >
+                {unreadCount > 0 && (
+                  <motion.span
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-white text-xs rounded-full flex items-center justify-center font-semibold"
+                  >
+                    {unreadCount > 9 ? '9+' : unreadCount}
+                  </motion.span>
+                )}
                 <ApperIcon name="Bell" className="w-4 h-4 md:w-5 md:h-5 text-gray-300" />
+                
+                {/* Notifications Dropdown */}
+                {showNotifications && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                    className="absolute top-full right-0 mt-2 w-96 bg-surface-800 dark:bg-surface-900 border border-gray-600 rounded-xl shadow-2xl z-50 max-h-96 overflow-hidden"
+                  >
+                    {/* Header */}
+                    <div className="p-4 border-b border-gray-600 flex items-center justify-between">
+                      <h3 className="text-white font-semibold text-lg">Notifications</h3>
+                      {unreadCount > 0 && (
+                        <motion.button
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={markAllAsRead}
+                          className="text-primary hover:text-primary-light text-sm font-medium transition-colors"
+                        >
+                          Mark all read
+                        </motion.button>
+                      )}
+                    </div>
+
+                    {/* Notifications List */}
+                    <div className="max-h-80 overflow-y-auto scrollbar-hide">
+                      {notifications.length > 0 ? (
+                        notifications.map((notification, index) => (
+                          <motion.div
+                            key={notification.id}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                            className={`p-4 border-b border-gray-700 last:border-b-0 hover:bg-surface-700 transition-colors cursor-pointer ${
+                              !notification.read ? 'bg-primary/5' : ''
+                            }`}
+                            onClick={() => !notification.read && markAsRead(notification.id)}
+                          >
+                            <div className="flex items-start gap-3">
+                              <div className={`p-2 rounded-lg ${
+                                notification.type === 'new_release' ? 'bg-primary/20 text-primary' :
+                                notification.type === 'recommendation' ? 'bg-accent/20 text-accent' :
+                                notification.type === 'watchlist' ? 'bg-blue-500/20 text-blue-400' :
+                                'bg-green-500/20 text-green-400'
+                              }`}>
+                                <ApperIcon name={getNotificationIcon(notification.type)} className="w-4 h-4" />
+                              </div>
+                              
+                              <div className="flex-1">
+                                <div className="flex items-center justify-between mb-1">
+                                  <span className="text-xs text-gray-400 uppercase tracking-wider font-medium">
+                                    {notification.category}
+                                  </span>
+                                  {!notification.read && (
+                                    <div className="w-2 h-2 bg-primary rounded-full"></div>
+                                  )}
+                                </div>
+                                
+                                <h4 className={`font-medium mb-1 ${
+                                  notification.read ? 'text-gray-300' : 'text-white'
+                                }`}>
+                                  {notification.title}
+                                </h4>
+                                
+                                <p className="text-gray-400 text-sm mb-2 leading-relaxed">
+                                  {notification.message}
+                                </p>
+                                
+                                <div className="flex items-center justify-between">
+                                  <span className="text-xs text-gray-500">
+                                    {formatTimestamp(notification.timestamp)}
+                                  </span>
+                                  
+                                  {!notification.read && (
+                                    <motion.button
+                                      whileHover={{ scale: 1.05 }}
+                                      whileTap={{ scale: 0.95 }}
+                                      onClick={(e) => {
+                                        e.stopPropagation()
+                                        markAsRead(notification.id)
+                                      }}
+                                      className="text-xs text-primary hover:text-primary-light font-medium"
+                                    >
+                                      Mark read
+                                    </motion.button>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          </motion.div>
+                        ))
+                      ) : (
+                        <div className="p-8 text-center">
+                          <ApperIcon name="Bell" className="w-12 h-12 text-gray-500 mx-auto mb-3" />
+                          <p className="text-gray-400">No notifications yet</p>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Footer */}
+                    <div className="p-3 border-t border-gray-600 text-center">
+                      <button className="text-primary hover:text-primary-light text-sm font-medium transition-colors">
+                        View all notifications
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
               </motion.button>
 
               <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-r from-primary to-primary-light flex items-center justify-center">
