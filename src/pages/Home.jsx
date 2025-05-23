@@ -166,7 +166,8 @@ function Home({ darkMode, setDarkMode }) {
   }
 
   const handleTVShowsClick = () => {
-    toast.info('TV Shows functionality coming soon!', {
+    navigate('/tv-shows')
+    toast.info('Navigating to TV Shows', {
       position: "top-right",
       autoClose: 2000
     })
