@@ -222,16 +222,16 @@ function Home({ darkMode, setDarkMode }) {
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
+                        onClick={() => markAsRead(notification.id)}
                 onClick={toggleDarkMode}
                 className="p-2 rounded-full bg-surface-800 hover:bg-surface-700 transition-colors"
               >
-                <ApperIcon 
+                        className="relative cursor-pointer"
                   name={darkMode ? "Sun" : "Moon"} 
-                  className="w-4 h-4 md:w-5 md:h-5 text-gray-300" 
-                />
-              </motion.button>
-              
-              <motion.button
+                        <motion.div
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className={`w-full p-4 rounded-xl transition-all duration-200 ${
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={openSearch}
@@ -261,7 +261,7 @@ function Home({ darkMode, setDarkMode }) {
                 {showNotifications && (
                   <div ref={notificationRef}>
                     <motion.div
-                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                                  <span className="inline-flex items-center text-xs text-primary">
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -10, scale: 0.95 }}
                     className="absolute top-full right-0 mt-2 w-96 bg-surface-800 dark:bg-surface-900 border border-gray-600 rounded-xl shadow-2xl z-50 max-h-96 overflow-hidden"
@@ -269,7 +269,7 @@ function Home({ darkMode, setDarkMode }) {
                     {/* Header */}
                     <div className="p-4 border-b border-gray-600 flex items-center justify-between">
                       <h3 className="text-white font-semibold text-lg">Notifications</h3>
-                      {unreadCount > 0 && (
+                        </motion.div>
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
