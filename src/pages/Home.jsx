@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import { toast } from 'react-toastify'
 import { Search, Play, Plus, ThumbsUp, ChevronDown, Star, Filter, Calendar, Sun, Moon } from 'lucide-react'
 import MainFeature from '../components/MainFeature'
 import ApperIcon from '../components/ApperIcon'
@@ -25,6 +27,13 @@ function Home({ darkMode, setDarkMode }) {
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode)
+    toast.success(
+      `Switched to ${!darkMode ? 'dark' : 'light'} mode`, 
+      {
+        icon: !darkMode ? '🌙' : '☀️',
+        position: "top-right"
+      }
+    )
   }
 
   return (
@@ -157,19 +166,6 @@ function Home({ darkMode, setDarkMode }) {
                   My List
                 </motion.button>
               </div>
-  const toggleTheme = () => {
-    setDarkMode(!darkMode)
-    toast.success(
-      `Switched to ${!darkMode ? 'dark' : 'light'} mode`, 
-      {
-        icon: !darkMode ? '🌙' : '☀️',
-        style: {
-          background: !darkMode ? '#1e293b' : '#ffffff',
-          color: !darkMode ? '#ffffff' : '#000000'
-        }
-      }
-    )
-  }
 
             </motion.div>
           </div>
@@ -247,35 +243,5 @@ function Home({ darkMode, setDarkMode }) {
     </div>
   )
 }
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-secondary-dark/95 dark:bg-secondary-dark/95 bg-white/95 backdrop-blur-md border-b border-gray-800 dark:border-gray-800 border-gray-200">
-export default Home
-              <div className="relative group">
-                  className="w-full pl-10 pr-4 py-2 bg-secondary/50 dark:bg-secondary/50 bg-gray-100/80 border border-gray-700 dark:border-gray-700 border-gray-300 rounded-lg text-white dark:text-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-            {/* Theme Toggle & User Menu */}
-              <button
-                onClick={toggleTheme}
-                className="p-2 rounded-lg bg-secondary/20 dark:bg-secondary/20 bg-gray-100 hover:bg-secondary/40 dark:hover:bg-secondary/40 hover:bg-gray-200 transition-all duration-200 group"
-                title={`Switch to ${darkMode ? 'light' : 'dark'} mode`}
-              >
-                {darkMode ? (
-                  <Sun className="w-5 h-5 text-yellow-400 group-hover:rotate-12 transition-transform duration-200" />
-                ) : (
-                  <Moon className="w-5 h-5 text-gray-600 group-hover:-rotate-12 transition-transform duration-200" />
-                )}
-              </button>
-              
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-sm font-semibold">
-                <span className="text-white dark:text-white text-gray-900 font-medium">User</span>
-        
-        {/* Search Results Indicator */}
-        <div className="bg-secondary-dark/95 dark:bg-secondary-dark/95 bg-white/95 border-b border-gray-800 dark:border-gray-800 border-gray-200 sticky top-16 z-40 backdrop-blur-md">
-                  className="bg-secondary dark:bg-secondary bg-gray-100 border border-gray-700 dark:border-gray-700 border-gray-300 text-white dark:text-white text-gray-900 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
-                  className="bg-secondary dark:bg-secondary bg-gray-100 border border-gray-700 dark:border-gray-700 border-gray-300 text-white dark:text-white text-gray-900 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
-                  className="bg-secondary dark:bg-secondary bg-gray-100 border border-gray-700 dark:border-gray-700 border-gray-300 text-white dark:text-white text-gray-900 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-              <div key={item.id} className="group cursor-pointer transform hover:scale-105 transition-transform duration-200">
-                  {/* Hover Overlay */}
-                  <h3 className="text-white dark:text-white text-gray-900 font-semibold text-sm line-clamp-1">{item.title}</h3>
-              <div className="text-gray-400 dark:text-gray-400 text-gray-600 text-lg mb-2">No content found</div>
 
 export default Home
