@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { Search, Play, Plus, ThumbsUp, Star, Filter, Calendar, Sun, Moon, User, Bell, ArrowLeft, Info } from 'lucide-react'
@@ -320,7 +320,6 @@ function TVShows({ darkMode, setDarkMode }) {
                 key={show.id}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
                 whileHover={{ scale: 1.02, y: -5 }}
                 className="bg-surface-800 rounded-xl overflow-hidden shadow-card hover:shadow-glow transition-all duration-300"
               >
@@ -358,11 +357,10 @@ function TVShows({ darkMode, setDarkMode }) {
                   {/* Watchlist Badge */}
                   {show.inWatchlist && (
                     <div className="absolute top-3 right-3 bg-primary px-2 py-1 rounded-full">
-                      <span className="text-white text-xs font-medium">In List</span>
-                    </div>
+  const playShow = (showTitle) => {
                   )}
                 </div>
-
+      autoClose: 3000
                 {/* Show Info */}
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-2">
@@ -455,3 +453,6 @@ function TVShows({ darkMode, setDarkMode }) {
 }
 
 export default TVShows
+                          playShow(show.title)
+                              playShow(show.title)
+                        playShow(show.title)

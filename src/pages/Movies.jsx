@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { Search, Play, Plus, Star, Filter, Calendar, ArrowLeft, Heart, Info } from 'lucide-react'
@@ -282,7 +282,6 @@ function Movies({ darkMode, setDarkMode }) {
                           <ApperIcon name="Play" className="w-4 h-4 text-white" />
                         </motion.button>
                         
-                        <motion.button
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
                           onClick={() => toggleMyList(movie)}
@@ -320,11 +319,10 @@ function Movies({ darkMode, setDarkMode }) {
                       <div className="flex items-center space-x-1">
                         <ApperIcon name="Star" className="w-4 h-4 text-accent" />
                         <span className="text-white text-sm font-medium">{movie.rating}</span>
-                      </div>
-                    </div>
+  const handlePlayMovie = (movieTitle) => {
                     
                     <div className="mt-2 text-gray-400 text-xs">
-                      <ApperIcon name="Calendar" className="w-3 h-3 inline mr-1" />
+      autoClose: 3000
                       {movie.duration}
                     </div>
                   </div>
@@ -362,3 +360,6 @@ function Movies({ darkMode, setDarkMode }) {
 }
 
 export default Movies
+                          handlePlayMovie(movie.title)
+                              handlePlayMovie(movie.title)
+                        handlePlayMovie(movie.title)
