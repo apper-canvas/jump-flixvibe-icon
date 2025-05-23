@@ -320,12 +320,14 @@ function Movies({ darkMode, setDarkMode }) {
                       <div className="flex items-center space-x-1">
                         <ApperIcon name="Star" className="w-4 h-4 text-accent" />
                         <span className="text-white text-sm font-medium">{movie.rating}</span>
+                      </div>
+                    </div>
                   </div>
                   
                   <div className="mt-2 text-gray-400 text-xs">
                     {movie.duration}
                   </div>
-                </div>
+                </motion.div>
               </motion.div>
             ))}
           </div>
