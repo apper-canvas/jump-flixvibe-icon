@@ -153,13 +153,6 @@ function Home({ darkMode, setDarkMode }) {
   }
 
   const markAllAsRead = () => {
-  }
-
-  const handleTVShowsClick = () => {
-    navigate('/tv-shows')
-    toast.info('Navigating to TV Shows', {
-      position: "top-right",
-      autoClose: 2000
     setNotifications(prev => {
       const updated = prev.map(notification => ({ ...notification, read: true }))
       localStorage.setItem('flixvibe-notifications', JSON.stringify(updated))
@@ -167,6 +160,13 @@ function Home({ darkMode, setDarkMode }) {
     })
     
     toast.success('All notifications marked as read', {
+      position: "top-right",
+      autoClose: 2000
+    })
+  }
+
+  const handleTVShowsClick = () => {
+    toast.info('TV Shows functionality coming soon!', {
       position: "top-right",
       autoClose: 2000
     })
