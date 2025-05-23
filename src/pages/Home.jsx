@@ -181,6 +181,10 @@ function Home({ darkMode, setDarkMode }) {
     toast.info('Navigating to My List', {
       position: "top-right",
       autoClose: 2000
+    })
+  }
+
+  const formatTimestamp = (timestamp) => {
     const now = new Date()
     const diff = now - timestamp
     const minutes = Math.floor(diff / 60000)
