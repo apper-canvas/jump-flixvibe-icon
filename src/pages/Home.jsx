@@ -209,19 +209,6 @@ function Home({ darkMode, setDarkMode }) {
 
             {/* Navigation Links - Hidden on mobile */}
             <div className="hidden md:flex items-center space-x-8">
-              type="button"
-              role="button"
-            {/* Navigation Links - Hidden on mobile */}
-            <div className="hidden md:flex items-center space-x-8">
-            </motion.button>
-                <motion.a
-                  key={item}
-                  whileHover={{ scale: 1.05 }}
-                  href="#"
-                  className="text-gray-300 hover:text-white transition-colors duration-200 font-medium"
-                >
-                  {item}
-                </motion.a>
               {['Home', 'Movies', 'TV Shows', 'My List'].map((item) => (
                 <motion.a
                   key={item}
