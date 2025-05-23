@@ -8,6 +8,7 @@ import Profile from './pages/Profile'
 import Movies from './pages/Movies'
 import TVShows from './pages/TVShows'
 import MyList from './pages/MyList'
+import About from './pages/About'
 import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/movies" element={<Movies darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="/tv-shows" element={<TVShows darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="/my-list" element={<MyList darkMode={darkMode} setDarkMode={setDarkMode} />} />
+          <Route path="/about" element={<About darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/profile" element={<Profile darkMode={darkMode} setDarkMode={setDarkMode} />} />
         </Routes>

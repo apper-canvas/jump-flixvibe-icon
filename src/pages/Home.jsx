@@ -182,6 +182,14 @@ function Home({ darkMode, setDarkMode }) {
   }
 
   const formatTimestamp = (timestamp) => {
+  const handleAboutClick = () => {
+    navigate('/about')
+    toast.info('Navigating to About', {
+      position: "top-right",
+      autoClose: 2000
+    })
+  }
+
     const now = new Date()
     const diff = now - timestamp
     const minutes = Math.floor(diff / 60000)
@@ -532,9 +540,12 @@ function Home({ darkMode, setDarkMode }) {
             ].map((column, columnIndex) => (
               <div key={columnIndex} className="space-y-3">
                 {column.map((item) => (
-                  <a
+                  <button
                     key={item}
-                    href="#"
+                    onClick={item === 'About' ? handleAboutClick : () => {
+                      toast.info(`Opening ${item}`, { position: "top-right", autoClose: 2000 })
+                    }}
+                    type="button"
                     className="block text-gray-400 hover:text-white transition-colors text-sm md:text-base"
                   >
                     {item}
