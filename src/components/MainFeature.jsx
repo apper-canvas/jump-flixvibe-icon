@@ -174,7 +174,12 @@ const MainFeature = () => {
         >
           {/* Search Bar */}
           <div className="relative mb-6 max-w-2xl mx-auto">
-            <ApperIcon name="Search" className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="relative"
+            >
+              <ApperIcon name="Search" className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+              
             <input
               type="text"
               placeholder="Search movies and shows..."
@@ -182,6 +187,22 @@ const MainFeature = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-12 pr-4 py-4 bg-surface-800/50 backdrop-blur-sm border border-gray-600 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
             />
+            
+            {/* Clear Search Button */}
+            {searchQuery && (
+              <motion.button
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setSearchQuery('')}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-gray-600 hover:bg-gray-500 rounded-full flex items-center justify-center transition-colors"
+              >
+                <ApperIcon name="X" className="w-4 h-4 text-white" />
+              </motion.button>
+            )}
+            </motion.div>
           </div>
 
           {/* Controls Row */}
