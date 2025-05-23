@@ -218,10 +218,8 @@ function Home({ darkMode, setDarkMode }) {
       position: "top-right",
       autoClose: 2000
     })
-  }
-
-  const handleHelpCenterClick = () => {
-    navigate('/help-center')
+    navigate('/legal-info')
+    toast.info('Navigating to legal info', { position: "top-right", autoClose: 3000 })
     toast.info('Navigating to Help Center', {
       position: "top-right",
       autoClose: 2000
