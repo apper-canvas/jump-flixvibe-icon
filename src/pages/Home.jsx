@@ -205,8 +205,17 @@ function Home({ darkMode, setDarkMode }) {
     })
   }
 
-  const formatTimestamp = (timestamp) => {
   const handleHelpCenterClick = () => {
+    navigate('/help-center')
+    toast.info('Navigating to Help Center', {
+      position: "top-right",
+      autoClose: 2000
+    })
+  }
+
+  const formatTimestamp = (timestamp) => {
+    const now = new Date()
+    const diff = now - timestamp
     navigate('/help-center')
     toast.info('Navigating to Help Center', {
       position: "top-right",
