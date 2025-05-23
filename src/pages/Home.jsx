@@ -193,9 +193,7 @@ function Home({ darkMode, setDarkMode }) {
     navigate('/careers')
     toast.info('Navigating to Careers', {
       position: "top-right",
-      autoClose: 2000
-    })
-  }
+    navigate('/privacy-policy')
 
   const handlePressClick = () => {
     navigate('/press')
