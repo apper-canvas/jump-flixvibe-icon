@@ -221,6 +221,14 @@ function Home({ darkMode, setDarkMode }) {
     })
   }
 
+  const handleTermsClick = () => {
+    navigate('/terms-and-conditions')
+    toast.info('Navigating to Terms and Conditions', {
+      position: "top-right",
+      autoClose: 2000
+    })
+  }
+
   const formatTimestamp = (timestamp) => {
     const now = new Date()
     const diff = now - timestamp
@@ -574,7 +582,7 @@ function Home({ darkMode, setDarkMode }) {
                 {column.map((item) => (
                   <button
                     key={item}
-                    onClick={item === 'About' ? handleAboutClick : item === 'Careers' ? handleCareersClick : item === 'Press' ? handlePressClick : item === 'Help Center' ? handleHelpCenterClick : item === 'Contact Us' ? handleContactUsClick : () => {
+                    onClick={item === 'About' ? handleAboutClick : item === 'Careers' ? handleCareersClick : item === 'Press' ? handlePressClick : item === 'Help Center' ? handleHelpCenterClick : item === 'Contact Us' ? handleContactUsClick : item === 'Terms' ? handleTermsClick : () => {
                       toast.info(`Opening ${item}`, { position: "top-right", autoClose: 2000 })
                     }}
                     type="button"
