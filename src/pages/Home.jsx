@@ -181,7 +181,6 @@ function Home({ darkMode, setDarkMode }) {
     })
   }
 
-  const formatTimestamp = (timestamp) => {
   const handleAboutClick = () => {
     navigate('/about')
     toast.info('Navigating to About', {
@@ -190,6 +189,7 @@ function Home({ darkMode, setDarkMode }) {
     })
   }
 
+  const formatTimestamp = (timestamp) => {
     const now = new Date()
     const diff = now - timestamp
     const minutes = Math.floor(diff / 60000)
@@ -549,7 +549,7 @@ function Home({ darkMode, setDarkMode }) {
                     className="block text-gray-400 hover:text-white transition-colors text-sm md:text-base"
                   >
                     {item}
-                  </a>
+                  </button>
                 ))}
               </div>
             ))}
