@@ -282,6 +282,7 @@ function Movies({ darkMode, setDarkMode }) {
                           <ApperIcon name="Play" className="w-4 h-4 text-white" />
                         </motion.button>
                         
+                        <motion.button
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
                           onClick={() => toggleMyList(movie)}
@@ -319,16 +320,15 @@ function Movies({ darkMode, setDarkMode }) {
                       <div className="flex items-center space-x-1">
                         <ApperIcon name="Star" className="w-4 h-4 text-accent" />
                         <span className="text-white text-sm font-medium">{movie.rating}</span>
-  const handlePlayMovie = (movieTitle) => {
-                    
-                    <div className="mt-2 text-gray-400 text-xs">
-      autoClose: 3000
-                      {movie.duration}
-                    </div>
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                  
+                  <div className="mt-2 text-gray-400 text-xs">
+                    {movie.duration}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
           </>
         ) : (
           <motion.div
@@ -360,6 +360,3 @@ function Movies({ darkMode, setDarkMode }) {
 }
 
 export default Movies
-                          handlePlayMovie(movie.title)
-                              handlePlayMovie(movie.title)
-                        handlePlayMovie(movie.title)
