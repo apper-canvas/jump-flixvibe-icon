@@ -138,10 +138,9 @@ function Movies({ darkMode, setDarkMode }) {
   }
 
   const handlePlayMovie = (movie) => {
-    toast.success(`Starting "${movie.title}"`, {
+    navigate(`/player/${movie.id}`)
+    toast.success(`Loading "${movie.title}"`, {
       position: "top-right",
-      autoClose: 2000,
-      icon: '▶️'
     })
   }
 

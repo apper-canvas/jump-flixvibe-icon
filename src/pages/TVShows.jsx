@@ -172,10 +172,9 @@ function TVShows({ darkMode, setDarkMode }) {
   }
 
   const playShow = (show) => {
-    toast.success(`Playing ${show.title}`, {
+    navigate(`/player/${show.id}`)
+    toast.success(`Loading ${show.title}`, {
       position: "top-right",
-      autoClose: 2000,
-      icon: '▶️'
     })
   }
 
