@@ -206,6 +206,14 @@ function Home({ darkMode, setDarkMode }) {
   }
 
   const formatTimestamp = (timestamp) => {
+  const handleHelpCenterClick = () => {
+    navigate('/help-center')
+    toast.info('Navigating to Help Center', {
+      position: "top-right",
+      autoClose: 2000
+    })
+  }
+
     const now = new Date()
     const diff = now - timestamp
     const minutes = Math.floor(diff / 60000)
@@ -558,7 +566,7 @@ function Home({ darkMode, setDarkMode }) {
                 {column.map((item) => (
                   <button
                     key={item}
-                    onClick={item === 'About' ? handleAboutClick : item === 'Careers' ? handleCareersClick : item === 'Press' ? handlePressClick : () => {
+                    onClick={item === 'About' ? handleAboutClick : item === 'Careers' ? handleCareersClick : item === 'Press' ? handlePressClick : item === 'Help Center' ? handleHelpCenterClick : () => {
                       toast.info(`Opening ${item}`, { position: "top-right", autoClose: 2000 })
                     }}
                     type="button"

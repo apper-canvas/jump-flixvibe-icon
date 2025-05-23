@@ -11,6 +11,7 @@ import MyList from './pages/MyList'
 import About from './pages/About'
 import Careers from './pages/Careers'
 import Press from './pages/Press'
+import HelpCenter from './pages/HelpCenter'
 import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
           <Route path="/about" element={<About darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="/careers" element={<Careers darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/help-center" element={<HelpCenter darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="/press" element={<Press darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="/profile" element={<Profile darkMode={darkMode} setDarkMode={setDarkMode} />} />
         </Routes>
