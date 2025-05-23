@@ -270,17 +270,19 @@ function Home({ darkMode, setDarkMode }) {
                     <div className="p-4 border-b border-gray-600 flex items-center justify-between">
                       <h3 className="text-white font-semibold text-lg">Notifications</h3>
                         {unreadCount > 0 && (
-                          <span className="inline-flex items-center text-xs text-primary">
-                            {unreadCount} new
-                          </span>
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          onClick={markAllAsRead}
-                          className="text-primary hover:text-primary-light text-sm font-medium transition-colors"
-                        >
-                          Mark all read
-                        </motion.button>
+                          <>
+                            <span className="inline-flex items-center text-xs text-primary">
+                              {unreadCount} new
+                            </span>
+                            <motion.button
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                              onClick={markAllAsRead}
+                              className="text-primary hover:text-primary-light text-sm font-medium transition-colors"
+                            >
+                              Mark all read
+                            </motion.button>
+                          </>
                         )}
                     </div>
 
