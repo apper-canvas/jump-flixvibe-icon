@@ -322,13 +322,12 @@ function Movies({ darkMode, setDarkMode }) {
                         <span className="text-white text-sm font-medium">{movie.rating}</span>
                       </div>
                     </div>
-                  </div>
-                  
-                  <div className="mt-2 text-gray-400 text-xs">
-                    {movie.duration}
+                    
+                    <div className="mt-2 text-gray-400 text-xs">
+                      {movie.duration}
+                    </div>
                   </div>
                 </motion.div>
-              </motion.div>
             ))}
           </div>
           </>
