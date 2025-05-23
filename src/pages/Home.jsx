@@ -174,6 +174,13 @@ function Home({ darkMode, setDarkMode }) {
   }
 
   const formatTimestamp = (timestamp) => {
+  }
+
+  const handleMyListClick = () => {
+    navigate('/my-list')
+    toast.info('Navigating to My List', {
+      position: "top-right",
+      autoClose: 2000
     const now = new Date()
     const diff = now - timestamp
     const minutes = Math.floor(diff / 60000)
@@ -237,9 +244,7 @@ function Home({ darkMode, setDarkMode }) {
                 <motion.button
                   key={item}
                   whileHover={{ scale: 1.05 }}
-                  onClick={item === 'Home' ? handleHomeClick : item === 'Movies' ? handleMoviesClick : item === 'TV Shows' ? handleTVShowsClick : () => {
-                    toast.info(`${item} functionality coming soon!`, {
-                      position: "top-right",
+                  onClick={item === 'Home' ? handleHomeClick : item === 'Movies' ? handleMoviesClick : item === 'TV Shows' ? handleTVShowsClick : item === 'My List' ? handleMyListClick : () => {
                       autoClose: 2000
                     })
                   }}
