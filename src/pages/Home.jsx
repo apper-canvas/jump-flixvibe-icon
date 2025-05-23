@@ -136,6 +136,14 @@ function Home({ darkMode, setDarkMode }) {
     navigate('/profile')
   }
 
+  const handleHomeClick = () => {
+    navigate('/')
+    toast.info('Navigating to home', {
+      position: "top-right",
+      autoClose: 2000
+    })
+  }
+
   const markAllAsRead = () => {
     setNotifications(prev => {
       const updated = prev.map(notification => ({ ...notification, read: true }))
@@ -210,14 +218,19 @@ function Home({ darkMode, setDarkMode }) {
             {/* Navigation Links - Hidden on mobile */}
             <div className="hidden md:flex items-center space-x-8">
               {['Home', 'Movies', 'TV Shows', 'My List'].map((item) => (
-                <motion.a
+                <motion.button
                   key={item}
                   whileHover={{ scale: 1.05 }}
-                  href="#"
+                  onClick={item === 'Home' ? handleHomeClick : () => {
+                    toast.info(`${item} functionality coming soon!`, {
+                      position: "top-right",
+                      autoClose: 2000
+                    })
+                  }}
                   className="text-gray-300 hover:text-white transition-colors duration-200 font-medium"
                 >
                   {item}
-                </motion.a>
+                </motion.button>
               ))}
             </div>
 
