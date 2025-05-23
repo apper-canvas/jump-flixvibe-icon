@@ -6,7 +6,6 @@ import NotFound from './pages/NotFound'
 import SearchPage from './pages/SearchPage'
 import Profile from './pages/Profile'
 import Movies from './pages/Movies'
-import TVShows from './pages/TVShows'
 import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
@@ -32,7 +31,6 @@ function App() {
           <Route path="/" element={<Home darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="/search" element={<SearchPage darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="/movies" element={<Movies darkMode={darkMode} setDarkMode={setDarkMode} />} />
-          <Route path="/tv-shows" element={<TVShows darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/profile" element={<Profile darkMode={darkMode} setDarkMode={setDarkMode} />} />
         </Routes>
