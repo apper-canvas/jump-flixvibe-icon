@@ -213,6 +213,14 @@ function Home({ darkMode, setDarkMode }) {
     })
   }
 
+  const handleContactUsClick = () => {
+    navigate('/contact-us')
+    toast.info('Navigating to Contact Us', {
+      position: "top-right",
+      autoClose: 2000
+    })
+  }
+
   const formatTimestamp = (timestamp) => {
     const now = new Date()
     const diff = now - timestamp
@@ -566,7 +574,7 @@ function Home({ darkMode, setDarkMode }) {
                 {column.map((item) => (
                   <button
                     key={item}
-                    onClick={item === 'About' ? handleAboutClick : item === 'Careers' ? handleCareersClick : item === 'Press' ? handlePressClick : item === 'Help Center' ? handleHelpCenterClick : () => {
+                    onClick={item === 'About' ? handleAboutClick : item === 'Careers' ? handleCareersClick : item === 'Press' ? handlePressClick : item === 'Help Center' ? handleHelpCenterClick : item === 'Contact Us' ? handleContactUsClick : () => {
                       toast.info(`Opening ${item}`, { position: "top-right", autoClose: 2000 })
                     }}
                     type="button"
