@@ -153,6 +153,13 @@ function Home({ darkMode, setDarkMode }) {
   }
 
   const markAllAsRead = () => {
+  }
+
+  const handleTVShowsClick = () => {
+    navigate('/tv-shows')
+    toast.info('Navigating to TV Shows', {
+      position: "top-right",
+      autoClose: 2000
     setNotifications(prev => {
       const updated = prev.map(notification => ({ ...notification, read: true }))
       localStorage.setItem('flixvibe-notifications', JSON.stringify(updated))
@@ -229,7 +236,7 @@ function Home({ darkMode, setDarkMode }) {
                 <motion.button
                   key={item}
                   whileHover={{ scale: 1.05 }}
-                  onClick={item === 'Home' ? handleHomeClick : item === 'Movies' ? handleMoviesClick : () => {
+                  onClick={item === 'Home' ? handleHomeClick : item === 'Movies' ? handleMoviesClick : item === 'TV Shows' ? handleTVShowsClick : () => {
                     toast.info(`${item} functionality coming soon!`, {
                       position: "top-right",
                       autoClose: 2000
