@@ -357,11 +357,10 @@ function TVShows({ darkMode, setDarkMode }) {
                   {/* Watchlist Badge */}
                   {show.inWatchlist && (
                     <div className="absolute top-3 right-3 bg-primary px-2 py-1 rounded-full">
-  const playShow = (showTitle) => {
+                      <Plus className="w-3 h-3 text-white" />
+                    </div>
                   )}
                 </div>
-      autoClose: 3000
-                {/* Show Info */}
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-2">
                     <span className="px-2 py-1 bg-primary/20 text-primary rounded text-xs font-medium">
@@ -453,6 +452,3 @@ function TVShows({ darkMode, setDarkMode }) {
 }
 
 export default TVShows
-                          playShow(show.title)
-                              playShow(show.title)
-                        playShow(show.title)
