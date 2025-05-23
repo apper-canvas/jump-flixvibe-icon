@@ -15,6 +15,7 @@ import HelpCenter from './pages/HelpCenter'
 import ContactUs from './pages/ContactUs'
 import TermsAndConditions from './pages/TermsAndConditions'
 import PrivacyPolicy from './pages/PrivacyPolicy'
+import CookiePolicy from './pages/CookiePolicy'
 import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
           <Route path="/contact-us" element={<ContactUs darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy darkMode={darkMode} setDarkMode={setDarkMode} />} />
+          <Route path="/cookie-policy" element={<CookiePolicy darkMode={darkMode} setDarkMode={setDarkMode} />} />
         </Routes>
       </BrowserRouter>
       

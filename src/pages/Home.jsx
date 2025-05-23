@@ -207,11 +207,7 @@ function Home({ darkMode, setDarkMode }) {
   const handlePressClick = () => {
     navigate('/press')
     toast.info('Navigating to Press', {
-      position: "top-right",
-      autoClose: 2000
-    })
-  }
-
+    navigate('/cookie-policy');
   const handleHelpCenterClick = () => {
     navigate('/help-center')
     toast.info('Navigating to Help Center', {
