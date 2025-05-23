@@ -144,7 +144,6 @@ function Home({ darkMode, setDarkMode }) {
     })
   }
 
-  const markAllAsRead = () => {
   const handleMoviesClick = () => {
     navigate('/movies')
     toast.info('Navigating to Movies', {
@@ -153,6 +152,7 @@ function Home({ darkMode, setDarkMode }) {
     })
   }
 
+  const markAllAsRead = () => {
     setNotifications(prev => {
       const updated = prev.map(notification => ({ ...notification, read: true }))
       localStorage.setItem('flixvibe-notifications', JSON.stringify(updated))
