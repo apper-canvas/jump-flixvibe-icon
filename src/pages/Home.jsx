@@ -628,7 +628,6 @@ function Home({ darkMode, setDarkMode }) {
                 )}
               </div>
             )}
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
               <div className="w-6 h-6 bg-gradient-to-r from-primary to-primary-light rounded flex items-center justify-center">
                 <ApperIcon name="Play" className="w-3 h-3 text-white" />
               </div>
