@@ -218,13 +218,24 @@ function Home({ darkMode, setDarkMode }) {
       position: "top-right",
       autoClose: 2000
     })
-    navigate('/legal-info')
-    toast.info('Navigating to legal info', { position: "top-right", autoClose: 3000 })
+  }
+
+  const handleHelpCenterClick = () => {
+    navigate('/help-center')
     toast.info('Navigating to Help Center', {
       position: "top-right",
       autoClose: 2000
     })
   }
+
+  const handleLegalClick = () => {
+    navigate('/legal-info')
+    toast.info('Navigating to Legal Info', {
+      position: "top-right",
+      autoClose: 2000
+    })
+  }
+
 
   const handleContactUsClick = () => {
     navigate('/contact-us')
@@ -595,15 +606,26 @@ function Home({ darkMode, setDarkMode }) {
                 {column.map((item) => (
                   <button
                     key={item}
-                    onClick={item === 'About' ? handleAboutClick : item === 'Careers' ? handleCareersClick : item === 'Press' ? handlePressClick : item === 'Help Center' ? handleHelpCenterClick : item === 'Contact Us' ? handleContactUsClick : item === 'Terms' ? handleTermsClick : item === 'Privacy' ? handlePrivacyClick : item === 'Cookie Policy' ? handleCookiePolicyClick : () => {
-                      toast.info(`Opening ${item}`, { position: "top-right", autoClose: 2000 })
+                    onClick={() => {
+                      if (item === 'About') handleAboutClick()
+                      else if (item === 'Careers') handleCareersClick()
+                      else if (item === 'Press') handlePressClick()
+                      else if (item === 'Help Center') handleHelpCenterClick()
+                      else if (item === 'Contact Us') handleContactUsClick()
+                      else if (item === 'Terms') handleTermsClick()
+                      else if (item === 'Privacy') handlePrivacyClick()
+                      else if (item === 'Cookie Policy') handleCookiePolicyClick()
+                      else if (item === 'Legal') handleLegalClick()
+                      else {
+                        toast.info(`Opening ${item}`, { position: "top-right", autoClose: 2000 })
+                      }
                     }}
                     type="button"
                     className="block text-gray-400 hover:text-white transition-colors text-sm md:text-base"
                   >
                     {item}
                   </button>
-                ))}
+
               </div>
             ))}
           </div>
