@@ -626,6 +626,8 @@ function Home({ darkMode, setDarkMode }) {
                     {item}
                   </button>
                 )}
+              </div>
+
 
 
               </div>
