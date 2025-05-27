@@ -628,7 +628,6 @@ function Home({ darkMode, setDarkMode }) {
                 )}
               </div>
             )}
-            )}
 
 
 
