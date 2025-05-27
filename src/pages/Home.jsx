@@ -627,10 +627,11 @@ function Home({ darkMode, setDarkMode }) {
                   </button>
                 )}
               </div>
+
+              </div>
             ))}  
           </div>
 
-          </div>
           
           <div className="flex flex-col md:flex-row items-center justify-between pt-6 md:pt-8 border-t border-gray-800">
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
